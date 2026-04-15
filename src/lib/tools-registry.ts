@@ -103,9 +103,9 @@ export const tools: ToolMeta[] = [
     slug: "markdown-preview",
     name: "Markdown Preview",
     description:
-      "Write Markdown and see it rendered in real time. Supports headings, lists, code blocks, links, and more.",
+      "Write Markdown and see it rendered in real time. Features a formatting toolbar, table support, copy HTML output, download as .md, fullscreen mode, and word count. No signup required.",
     shortDescription: "Live Markdown editor & preview",
-    keywords: ["markdown editor", "markdown preview", "markdown online", "markdown viewer"],
+    keywords: ["markdown editor", "markdown preview", "markdown online", "markdown viewer", "markdown to html", "online markdown editor", "markdown renderer"],
     icon: "BookOpen",
     category: "text",
   },
