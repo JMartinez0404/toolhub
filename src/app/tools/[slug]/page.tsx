@@ -40,17 +40,22 @@ export async function generateMetadata({
   const tool = tools.find((t) => t.slug === slug);
   if (!tool) return {};
 
-  const title = `${tool.name} - Free Online`;
+  const title = `Free ${tool.name} Online - ${SITE_NAME}`;
   return {
     title,
     description: tool.description,
     keywords: tool.keywords,
     alternates: { canonical: `${SITE_URL}/tools/${tool.slug}` },
     openGraph: {
-      title: `${tool.name} | ${SITE_NAME}`,
+      title,
       description: tool.description,
       url: `${SITE_URL}/tools/${tool.slug}`,
       type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description: tool.description,
     },
   };
 }
@@ -72,16 +77,48 @@ export default async function ToolPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            name: tool.name,
-            description: tool.description,
-            url: `${SITE_URL}/tools/${tool.slug}`,
-            applicationCategory: "UtilityApplication",
-            operatingSystem: "Any",
-            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: tool.name,
+              description: tool.description,
+              url: `${SITE_URL}/tools/${tool.slug}`,
+              applicationCategory: "UtilityApplication",
+              operatingSystem: "Any",
+              offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: `Is this ${tool.name.toLowerCase()} free?`,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: `Yes, this ${tool.name.toLowerCase()} is completely free to use with no limits. No signup or download required.`,
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: `Is my data safe with this ${tool.name.toLowerCase()}?`,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Absolutely. This tool runs entirely in your browser. No data is ever sent to a server or stored anywhere.",
+                  },
+                },
+              ],
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+                { "@type": "ListItem", position: 2, name: tool.name, item: `${SITE_URL}/tools/${tool.slug}` },
+              ],
+            },
+          ]),
         }}
       />
       <Component />

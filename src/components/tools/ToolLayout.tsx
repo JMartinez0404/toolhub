@@ -16,7 +16,9 @@ interface ToolLayoutProps {
 }
 
 export function ToolLayout({ tool, children }: ToolLayoutProps) {
-  const related = tools.filter((t) => t.slug !== tool.slug).slice(0, 4);
+  const sameCategory = tools.filter((t) => t.slug !== tool.slug && t.category === tool.category);
+  const others = tools.filter((t) => t.slug !== tool.slug && t.category !== tool.category);
+  const related = [...sameCategory, ...others].slice(0, 4);
 
   return (
     <div className="mx-auto w-full max-w-4xl px-4 py-8">
@@ -28,8 +30,13 @@ export function ToolLayout({ tool, children }: ToolLayoutProps) {
         <span className="text-gray-900">{tool.name}</span>
       </nav>
 
-      <h1 className="mb-2 text-3xl font-bold text-gray-900">{tool.name}</h1>
+      <h1 className="mb-2 text-3xl font-bold text-gray-900">Free {tool.name} Online</h1>
       <p className="mb-6 text-gray-600">{tool.description}</p>
+
+      <section className="mb-6 rounded-lg bg-blue-50 p-4 text-sm text-gray-700">
+        <h2 className="mb-1 font-semibold text-gray-900">How to use this {tool.name.toLowerCase()}</h2>
+        <p>Use this free {tool.name.toLowerCase()} directly in your browser. No signup, no download, no data sent to any server. Your data stays on your device.</p>
+      </section>
 
       <AdUnit className="mb-6" />
 
