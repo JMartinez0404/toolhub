@@ -50,11 +50,16 @@ export function PasswordGenerator() {
   const strength = getStrength(length, activeTypes);
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 space-y-5">
-      <h2 className="text-lg font-semibold text-gray-900">Password Generator</h2>
+    <div className="rounded-lg border border-gray-200 bg-white p-6 space-y-5 dark:border-gray-800 dark:bg-gray-900">
+      <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        Password Generator
+      </h2>
 
       <div>
-        <label htmlFor="pw-length" className="block text-sm font-medium text-gray-700 mb-1">
+        <label
+          htmlFor="pw-length"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
+        >
           Length: {length}
         </label>
         <input
@@ -66,21 +71,26 @@ export function PasswordGenerator() {
           onChange={(e) => setLength(Number(e.target.value))}
           className="w-full accent-blue-600"
         />
-        <div className="flex justify-between text-xs text-gray-400">
+        <div className="flex justify-between text-xs text-gray-400 dark:text-gray-500">
           <span>8</span>
           <span>128</span>
         </div>
       </div>
 
       <fieldset className="flex flex-wrap gap-4">
-        <legend className="text-sm font-medium text-gray-700 mb-2">Character types</legend>
+        <legend className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+          Character types
+        </legend>
         {(Object.keys(options) as (keyof typeof options)[]).map((key) => (
-          <label key={key} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+          <label
+            key={key}
+            className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200 cursor-pointer"
+          >
             <input
               type="checkbox"
               checked={options[key]}
               onChange={() => setOptions((o) => ({ ...o, [key]: !o[key] }))}
-              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
             />
             {key.charAt(0).toUpperCase() + key.slice(1)}
           </label>
@@ -94,7 +104,7 @@ export function PasswordGenerator() {
       {password && (
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <code className="flex-1 rounded-md bg-gray-50 border border-gray-200 px-3 py-2 text-sm font-mono break-all">
+            <code className="flex-1 rounded-md bg-gray-50 border border-gray-200 px-3 py-2 text-sm text-gray-900 font-mono break-all dark:bg-gray-950 dark:border-gray-700 dark:text-gray-100">
               {password}
             </code>
             <Button variant="outline" size="sm" onClick={copy}>
@@ -103,11 +113,11 @@ export function PasswordGenerator() {
           </div>
 
           <div>
-            <div className="flex justify-between text-xs text-gray-500 mb-1">
+            <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
               <span>Strength</span>
               <span>{strength.label}</span>
             </div>
-            <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
+            <div className="h-2 rounded-full bg-gray-100 overflow-hidden dark:bg-gray-800">
               <div
                 className={`h-full rounded-full transition-all ${strength.color} ${strength.width}`}
               />

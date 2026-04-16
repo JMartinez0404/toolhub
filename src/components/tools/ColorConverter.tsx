@@ -85,14 +85,17 @@ export function ColorConverter() {
   return (
     <div className="space-y-6">
       <div
-        className="w-full h-32 rounded-lg border border-gray-200"
+        className="w-full h-32 rounded-lg border border-gray-200 dark:border-gray-700"
         style={{ backgroundColor: hex }}
         aria-label={`Color preview: ${hex}`}
       />
 
       <div className="space-y-4">
         <div className="flex items-center gap-3">
-          <label htmlFor="color-picker" className="text-sm font-medium text-gray-700 w-16">
+          <label
+            htmlFor="color-picker"
+            className="text-sm font-medium text-gray-700 dark:text-gray-200 w-16"
+          >
             Picker
           </label>
           <input
@@ -100,12 +103,17 @@ export function ColorConverter() {
             type="color"
             value={hex}
             onChange={(e) => updateFromHex(e.target.value)}
-            className="w-12 h-10 rounded cursor-pointer border border-gray-200"
+            className="w-12 h-10 rounded cursor-pointer border border-gray-200 dark:border-gray-700 bg-transparent"
           />
         </div>
 
         <div className="flex items-center gap-3">
-          <label htmlFor="hex-input" className="text-sm font-medium text-gray-700 w-16">HEX</label>
+          <label
+            htmlFor="hex-input"
+            className="text-sm font-medium text-gray-700 dark:text-gray-200 w-16"
+          >
+            HEX
+          </label>
           <input
             id="hex-input"
             type="text"
@@ -115,7 +123,7 @@ export function ColorConverter() {
               if (/^#[0-9a-fA-F]{6}$/.test(v)) updateFromHex(v);
               else setHex(v);
             }}
-            className="flex-1 rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
             maxLength={7}
           />
           <Button size="sm" variant="outline" onClick={() => copy(hexStr, "hex")}>
@@ -124,7 +132,7 @@ export function ColorConverter() {
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="text-sm font-medium text-gray-700 w-16">RGB</span>
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-200 w-16">RGB</span>
           <div className="flex flex-1 gap-2">
             {(["R", "G", "B"] as const).map((label, i) => (
               <div key={label} className="flex-1">
@@ -141,7 +149,7 @@ export function ColorConverter() {
                     updateFromRgb(...next);
                   }}
                   placeholder={label}
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
                 />
               </div>
             ))}
@@ -152,7 +160,7 @@ export function ColorConverter() {
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="text-sm font-medium text-gray-700 w-16">HSL</span>
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-200 w-16">HSL</span>
           <div className="flex flex-1 gap-2">
             {(["H", "S", "L"] as const).map((label, i) => (
               <div key={label} className="flex-1">
@@ -169,7 +177,7 @@ export function ColorConverter() {
                     updateFromHsl(...next);
                   }}
                   placeholder={label}
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
                 />
               </div>
             ))}

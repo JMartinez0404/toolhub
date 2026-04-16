@@ -31,6 +31,11 @@ export const metadata: Metadata = {
   },
 };
 
+// Static string — no interpolation, no user input. Runs before paint to
+// prevent a flash of unstyled (light) content when the user prefers dark.
+// Strict string comparison ensures only the two known values are honored.
+const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('toolhub-theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;var isDark=t==='dark'||(t!=='light'&&d);if(isDark){document.documentElement.classList.add('dark');}}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,8 +45,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-white text-gray-900">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
+      <body className="min-h-full flex flex-col bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

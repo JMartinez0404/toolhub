@@ -39,7 +39,10 @@ export function UrlCodec() {
     <div className="space-y-6">
       <div>
         <div className="flex items-center justify-between mb-1">
-          <label htmlFor="url-decoded" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="url-decoded"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+          >
             Decoded
           </label>
           <Button
@@ -57,7 +60,7 @@ export function UrlCodec() {
           onChange={(e) => setDecoded(e.target.value)}
           rows={5}
           placeholder="Enter decoded URL or text..."
-          className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
+          className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 font-mono placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
         />
       </div>
 
@@ -71,12 +74,17 @@ export function UrlCodec() {
       </div>
 
       {error && (
-        <p className="text-sm text-red-600 text-center" role="alert">{error}</p>
+        <p className="text-sm text-red-600 dark:text-red-400 text-center" role="alert">
+          {error}
+        </p>
       )}
 
       <div>
         <div className="flex items-center justify-between mb-1">
-          <label htmlFor="url-encoded" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="url-encoded"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+          >
             Encoded
           </label>
           <Button
@@ -94,7 +102,7 @@ export function UrlCodec() {
           onChange={(e) => setEncoded(e.target.value)}
           rows={5}
           placeholder="Enter encoded URL or text..."
-          className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
+          className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 font-mono placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
         />
       </div>
     </div>

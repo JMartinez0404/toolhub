@@ -53,11 +53,11 @@ export function JsonFormatter() {
   };
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 space-y-4">
-      <h2 className="text-lg font-semibold text-gray-900">JSON Formatter</h2>
+    <div className="rounded-lg border border-gray-200 bg-white p-6 space-y-4 dark:border-gray-800 dark:bg-gray-900">
+      <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">JSON Formatter</h2>
 
       <div>
-        <label htmlFor="json-input" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="json-input" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Input JSON
         </label>
         <textarea
@@ -69,7 +69,7 @@ export function JsonFormatter() {
           }}
           placeholder='{"key": "value"}'
           rows={8}
-          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-y"
+          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 font-mono placeholder:text-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-y dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
           spellCheck={false}
         />
       </div>
@@ -87,7 +87,10 @@ export function JsonFormatter() {
       </div>
 
       {error && (
-        <p className="rounded-md bg-red-50 border border-red-200 px-3 py-2 text-sm text-red-700" role="alert">
+        <p
+          className="rounded-md bg-red-50 border border-red-200 px-3 py-2 text-sm text-red-700 dark:bg-red-950/40 dark:border-red-900 dark:text-red-300"
+          role="alert"
+        >
           {error}
         </p>
       )}
@@ -95,7 +98,10 @@ export function JsonFormatter() {
       {output && (
         <div>
           <div className="flex items-center justify-between mb-1">
-            <label htmlFor="json-output" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="json-output"
+              className="text-sm font-medium text-gray-700 dark:text-gray-200"
+            >
               Output
             </label>
             <Button variant="outline" size="sm" onClick={copy}>
@@ -107,7 +113,7 @@ export function JsonFormatter() {
             value={output}
             readOnly
             rows={8}
-            className="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm font-mono outline-none resize-y"
+            className="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 font-mono outline-none resize-y dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
           />
         </div>
       )}

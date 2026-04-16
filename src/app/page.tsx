@@ -23,23 +23,23 @@ export default function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
       <div className="mb-10 text-center">
-        <h1 className="mb-3 text-4xl font-bold text-gray-900">
+        <h1 className="mb-3 text-4xl font-bold text-gray-900 dark:text-gray-100">
           Free Online Tools
         </h1>
-        <p className="mx-auto max-w-2xl text-lg text-gray-600">
+        <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
           {SITE_NAME} offers a growing collection of free, fast, and
           privacy-friendly tools that run entirely in your browser.
         </p>
       </div>
 
       <div className="relative mx-auto mb-10 max-w-md">
-        <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+        <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
         <input
           type="text"
           placeholder="Search tools..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-lg border border-gray-300 bg-white py-2.5 pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+          className="w-full rounded-lg border border-gray-300 bg-white py-2.5 pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder:text-gray-500"
         />
       </div>
 
@@ -50,20 +50,24 @@ export default function HomePage() {
             <Link
               key={tool.slug}
               href={`/tools/${tool.slug}`}
-              className="group rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-blue-200 hover:shadow-md"
+              className="group rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-blue-200 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-800 dark:hover:shadow-black/40"
             >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-100">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-100 dark:bg-blue-950 dark:text-blue-400 dark:group-hover:bg-blue-900">
                 <Icon className="h-5 w-5" />
               </div>
-              <h2 className="mb-1 font-semibold text-gray-900">{tool.name}</h2>
-              <p className="text-sm text-gray-500">{tool.shortDescription}</p>
+              <h2 className="mb-1 font-semibold text-gray-900 dark:text-gray-100">
+                {tool.name}
+              </h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {tool.shortDescription}
+              </p>
             </Link>
           );
         })}
       </div>
 
       {filtered.length === 0 && (
-        <p className="text-center text-gray-500">
+        <p className="text-center text-gray-500 dark:text-gray-400">
           No tools found matching &ldquo;{query}&rdquo;
         </p>
       )}

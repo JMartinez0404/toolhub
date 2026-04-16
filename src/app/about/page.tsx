@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
-      <h1 className="mb-4 text-3xl font-bold text-gray-900">
+      <h1 className="mb-4 text-3xl font-bold text-gray-900 dark:text-gray-100">
         About {SITE_NAME}
       </h1>
-      <div className="space-y-4 text-gray-600 leading-relaxed">
+      <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
         <p>
           {SITE_NAME} is a collection of free online tools built for developers,
           designers, writers, and anyone who needs quick utilities without the
@@ -24,7 +24,7 @@ export default function AboutPage() {
           device — nothing is sent to a server, stored, or tracked. We believe
           useful tools should be fast, free, and private.
         </p>
-        <h2 className="pt-4 text-xl font-semibold text-gray-900">
+        <h2 className="pt-4 text-xl font-semibold text-gray-900 dark:text-gray-100">
           Currently Available
         </h2>
         <ul className="list-disc space-y-1 pl-6">

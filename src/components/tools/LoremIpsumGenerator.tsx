@@ -80,7 +80,7 @@ export function LoremIpsumGenerator() {
   return (
     <div className="space-y-6">
       <fieldset>
-        <legend className="text-sm font-medium text-gray-700 mb-2">Type</legend>
+        <legend className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Type</legend>
         <div className="flex gap-4">
           {(["paragraphs", "sentences", "words"] as const).map((m) => (
             <label key={m} className="flex items-center gap-2 cursor-pointer">
@@ -92,14 +92,17 @@ export function LoremIpsumGenerator() {
                 onChange={() => { setMode(m); setCount(m === "paragraphs" ? 3 : m === "sentences" ? 5 : 50); }}
                 className="accent-blue-600"
               />
-              <span className="text-sm capitalize text-gray-700">{m}</span>
+              <span className="text-sm capitalize text-gray-700 dark:text-gray-200">{m}</span>
             </label>
           ))}
         </div>
       </fieldset>
 
       <div className="flex items-center gap-3">
-        <label htmlFor="lorem-count" className="text-sm font-medium text-gray-700">
+        <label
+          htmlFor="lorem-count"
+          className="text-sm font-medium text-gray-700 dark:text-gray-200"
+        >
           Count
         </label>
         <input
@@ -109,9 +112,9 @@ export function LoremIpsumGenerator() {
           max={maxCount}
           value={count}
           onChange={(e) => setCount(Math.max(1, Math.min(maxCount, Number(e.target.value) || 1)))}
-          className="w-24 rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-24 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
         />
-        <span className="text-xs text-gray-500">max {maxCount}</span>
+        <span className="text-xs text-gray-500 dark:text-gray-400">max {maxCount}</span>
       </div>
 
       <Button onClick={generate}>Generate</Button>
@@ -128,7 +131,7 @@ export function LoremIpsumGenerator() {
             value={output}
             rows={10}
             aria-label="Generated lorem ipsum text"
-            className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-gray-700 resize-y focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 resize-y focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-200"
           />
         </div>
       )}

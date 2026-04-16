@@ -26,7 +26,7 @@ export function AdUnit({ slot, format = "auto", className }: AdUnitProps) {
     return (
       <div
         className={cn(
-          "flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 py-6 text-xs text-gray-400",
+          "flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 py-6 text-xs text-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-500",
           className
         )}
       >

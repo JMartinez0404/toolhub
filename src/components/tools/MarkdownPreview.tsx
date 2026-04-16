@@ -133,41 +133,41 @@ export function MarkdownPreview() {
   };
 
   const containerClass = fullscreen
-    ? "fixed inset-0 z-50 bg-white p-4 flex flex-col"
+    ? "fixed inset-0 z-50 bg-white p-4 flex flex-col dark:bg-gray-950"
     : "space-y-4";
 
   return (
     <div className={containerClass}>
       {/* Toolbar */}
-      <div className="flex flex-wrap items-center gap-1 rounded-lg border border-gray-200 bg-gray-50 p-1.5">
+      <div className="flex flex-wrap items-center gap-1 rounded-lg border border-gray-200 bg-gray-50 p-1.5 dark:border-gray-800 dark:bg-gray-900">
         {toolbarActions.map((action) => (
           <button
             key={action.label}
             onClick={() => applyFormat(action)}
             title={action.label}
-            className="rounded p-1.5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors"
+            className="rounded p-1.5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100"
           >
             {action.icon}
           </button>
         ))}
 
-        <div className="mx-1 h-6 w-px bg-gray-300" />
+        <div className="mx-1 h-6 w-px bg-gray-300 dark:bg-gray-700" />
 
-        <button onClick={copyMarkdown} title="Copy Markdown" className="rounded p-1.5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors">
+        <button onClick={copyMarkdown} title="Copy Markdown" className="rounded p-1.5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100">
           <Copy className="h-4 w-4" />
         </button>
-        <button onClick={downloadMd} title="Download .md" className="rounded p-1.5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors">
+        <button onClick={downloadMd} title="Download .md" className="rounded p-1.5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100">
           <Download className="h-4 w-4" />
         </button>
-        <button onClick={() => setMarkdown("")} title="Clear" className="rounded p-1.5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors">
+        <button onClick={() => setMarkdown("")} title="Clear" className="rounded p-1.5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100">
           <Trash2 className="h-4 w-4" />
         </button>
-        <button onClick={() => setFullscreen(!fullscreen)} title={fullscreen ? "Exit Fullscreen" : "Fullscreen"} className="rounded p-1.5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors">
+        <button onClick={() => setFullscreen(!fullscreen)} title={fullscreen ? "Exit Fullscreen" : "Fullscreen"} className="rounded p-1.5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100">
           {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
         </button>
 
         {copied && (
-          <span className="ml-2 text-xs text-green-600">
+          <span className="ml-2 text-xs text-green-600 dark:text-green-400">
             {copied === "md" ? "Markdown copied!" : "HTML copied!"}
           </span>
         )}
@@ -176,7 +176,10 @@ export function MarkdownPreview() {
       {/* Editor + Preview */}
       <div className={`flex flex-col md:flex-row gap-4 ${fullscreen ? "flex-1 min-h-0" : "min-h-[500px]"}`}>
         <div className="flex-1 flex flex-col min-h-0">
-          <label htmlFor="md-input" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="md-input"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
+          >
             Markdown
           </label>
           <textarea
@@ -184,28 +187,38 @@ export function MarkdownPreview() {
             id="md-input"
             value={markdown}
             onChange={(e) => setMarkdown(e.target.value)}
-            className="flex-1 w-full rounded-lg border border-gray-200 px-4 py-3 text-sm font-mono resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[300px]"
+            className="flex-1 w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 font-mono resize-none placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[300px] dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
             placeholder="Type your Markdown here..."
           />
         </div>
 
         <div className="flex-1 flex flex-col min-h-0">
           <div className="flex items-center justify-between mb-1">
-            <span className="block text-sm font-medium text-gray-700">Preview</span>
+            <span className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              Preview
+            </span>
             <Button onClick={copyHtml} variant="outline" size="sm">
               {copied === "html" ? "Copied!" : "Copy HTML"}
             </Button>
           </div>
           <div
             id="md-preview"
-            className="flex-1 rounded-lg border border-gray-200 px-6 py-4 overflow-auto min-h-[300px] prose prose-sm max-w-none
+            className="flex-1 rounded-lg border border-gray-200 bg-white px-6 py-4 overflow-auto min-h-[300px] prose prose-sm max-w-none
               prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600
               prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
               prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-lg
               prose-blockquote:border-l-blue-500 prose-blockquote:text-gray-600
               prose-li:text-gray-700 prose-strong:text-gray-900 prose-hr:border-gray-200
               prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:px-3 prose-th:py-1.5 prose-th:bg-gray-50
-              prose-td:border prose-td:border-gray-300 prose-td:px-3 prose-td:py-1.5"
+              prose-td:border prose-td:border-gray-300 prose-td:px-3 prose-td:py-1.5
+              dark:border-gray-700 dark:bg-gray-950 dark:prose-invert
+              dark:prose-headings:text-gray-100 dark:prose-p:text-gray-200 dark:prose-a:text-blue-400
+              dark:prose-code:bg-gray-800 dark:prose-code:text-gray-100
+              dark:prose-pre:bg-gray-900
+              dark:prose-blockquote:border-l-blue-400 dark:prose-blockquote:text-gray-300
+              dark:prose-li:text-gray-200 dark:prose-strong:text-gray-100 dark:prose-hr:border-gray-700
+              dark:prose-th:border-gray-700 dark:prose-th:bg-gray-900
+              dark:prose-td:border-gray-700"
             aria-label="Rendered Markdown preview"
           >
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
@@ -214,7 +227,7 @@ export function MarkdownPreview() {
       </div>
 
       {/* Stats Bar */}
-      <div className="flex items-center gap-4 text-xs text-gray-500 border-t border-gray-200 pt-2">
+      <div className="flex items-center gap-4 text-xs text-gray-500 border-t border-gray-200 pt-2 dark:text-gray-400 dark:border-gray-800">
         <span>{stats.words} words</span>
         <span>{stats.chars} characters</span>
         <span>{stats.lines} lines</span>

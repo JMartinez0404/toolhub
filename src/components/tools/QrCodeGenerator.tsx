@@ -46,7 +46,10 @@ export function QrCodeGenerator() {
   return (
     <div className="space-y-6">
       <div>
-        <label htmlFor="qr-input" className="block text-sm font-medium text-gray-700 mb-1">
+        <label
+          htmlFor="qr-input"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
+        >
           Text or URL
         </label>
         <input
@@ -55,22 +58,23 @@ export function QrCodeGenerator() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter text or URL to encode..."
-          className="w-full rounded-lg border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
         />
       </div>
 
       {error && (
-        <p className="text-sm text-red-600" role="alert">{error}</p>
+        <p className="text-sm text-red-600 dark:text-red-400" role="alert">{error}</p>
       )}
 
       <div className="flex flex-col items-center gap-4">
-        <div className="rounded-lg border border-gray-200 bg-white p-4 flex items-center justify-center min-h-[288px] min-w-[288px]">
+        {/* QR stays black-on-white for reliable scanning across light/dark themes */}
+        <div className="rounded-lg border border-gray-200 bg-white p-4 flex items-center justify-center min-h-[288px] min-w-[288px] dark:border-gray-700">
           {input.trim() ? (
             <canvas ref={canvasRef} aria-label={`QR code for: ${input}`} />
           ) : (
             <>
               <canvas ref={canvasRef} className="hidden" />
-              <p className="text-sm text-gray-400">Enter text above to generate a QR code</p>
+              <p className="text-sm text-gray-400 dark:text-gray-500">Enter text above to generate a QR code</p>
             </>
           )}
         </div>

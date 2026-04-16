@@ -9,12 +9,16 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
-      <h1 className="mb-4 text-3xl font-bold text-gray-900">Privacy Policy</h1>
-      <p className="mb-6 text-sm text-gray-500">Last updated: April 2026</p>
+      <h1 className="mb-4 text-3xl font-bold text-gray-900 dark:text-gray-100">
+        Privacy Policy
+      </h1>
+      <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
+        Last updated: April 2026
+      </p>
 
-      <div className="space-y-6 text-gray-600 leading-relaxed">
+      <div className="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed">
         <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-900">
+          <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
             Overview
           </h2>
           <p>
@@ -25,7 +29,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-900">
+          <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
             Data Processing
           </h2>
           <p>
@@ -36,7 +40,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-900">
+          <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
             Advertising
           </h2>
           <p>
@@ -47,7 +51,7 @@ export default function PrivacyPage() {
               href="https://www.google.com/settings/ads"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline hover:text-blue-800"
+              className="text-blue-600 underline hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
             >
               Google Ads Settings
             </a>
@@ -56,7 +60,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-900">
+          <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
             Analytics
           </h2>
           <p>
@@ -67,7 +71,9 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-900">Cookies</h2>
+          <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Cookies
+          </h2>
           <p>
             Our site itself does not set cookies. However, third-party services
             such as Google AdSense may set cookies for ad personalization and
@@ -76,7 +82,9 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-900">Contact</h2>
+          <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Contact
+          </h2>
           <p>
             If you have any questions about this privacy policy, please open an
             issue on our GitHub repository.

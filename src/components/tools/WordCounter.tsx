@@ -39,11 +39,14 @@ export function WordCounter() {
   ];
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 space-y-4">
-      <h2 className="text-lg font-semibold text-gray-900">Word Counter</h2>
+    <div className="rounded-lg border border-gray-200 bg-white p-6 space-y-4 dark:border-gray-800 dark:bg-gray-900">
+      <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Word Counter</h2>
 
       <div>
-        <label htmlFor="wc-input" className="block text-sm font-medium text-gray-700 mb-1">
+        <label
+          htmlFor="wc-input"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
+        >
           Enter or paste your text
         </label>
         <textarea
@@ -52,7 +55,7 @@ export function WordCounter() {
           onChange={(e) => setText(e.target.value)}
           placeholder="Start typing or paste text here..."
           rows={10}
-          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-y"
+          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-y dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
         />
       </div>
 
@@ -60,10 +63,10 @@ export function WordCounter() {
         {statItems.map((item) => (
           <div
             key={item.label}
-            className="rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-center"
+            className="rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-center dark:border-gray-800 dark:bg-gray-950"
           >
-            <p className="text-xl font-semibold text-gray-900">{item.value}</p>
-            <p className="text-xs text-gray-500">{item.label}</p>
+            <p className="text-xl font-semibold text-gray-900 dark:text-gray-100">{item.value}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{item.label}</p>
           </div>
         ))}
       </div>
