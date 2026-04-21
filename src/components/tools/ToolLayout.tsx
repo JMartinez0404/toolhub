@@ -19,6 +19,7 @@ export function ToolLayout({ tool, children }: ToolLayoutProps) {
   const sameCategory = tools.filter((t) => t.slug !== tool.slug && t.category === tool.category);
   const others = tools.filter((t) => t.slug !== tool.slug && t.category !== tool.category);
   const related = [...sameCategory, ...others].slice(0, 4);
+  const toolNameLower = tool.name.toLowerCase();
 
   return (
     <div className="mx-auto w-full max-w-4xl px-4 py-8">
@@ -35,16 +36,73 @@ export function ToolLayout({ tool, children }: ToolLayoutProps) {
       </h1>
       <p className="mb-6 text-gray-600 dark:text-gray-300">{tool.description}</p>
 
-      <section className="mb-6 rounded-lg bg-blue-50 p-4 text-sm text-gray-700 dark:bg-blue-950/40 dark:text-gray-200">
-        <h2 className="mb-1 font-semibold text-gray-900 dark:text-gray-100">
-          How to use this {tool.name.toLowerCase()}
-        </h2>
-        <p>Use this free {tool.name.toLowerCase()} directly in your browser. No signup, no download, no data sent to any server. Your data stays on your device.</p>
-      </section>
+      {tool.longDescription && (
+        <section className="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p>{tool.longDescription}</p>
+        </section>
+      )}
 
       <AdUnit className="mb-6" />
 
       <div className="mb-8">{children}</div>
+
+      <AdUnit className="mb-8" />
+
+      {tool.howTo && tool.howTo.length > 0 ? (
+        <section className="mb-8">
+          <h2 className="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-100">
+            How to use this {toolNameLower}
+          </h2>
+          <ol className="list-decimal space-y-2 pl-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+            {tool.howTo.map((step, i) => (
+              <li key={i}>{step}</li>
+            ))}
+          </ol>
+        </section>
+      ) : (
+        <section className="mb-8 rounded-lg bg-blue-50 p-4 text-sm text-gray-700 dark:bg-blue-950/40 dark:text-gray-200">
+          <h2 className="mb-1 font-semibold text-gray-900 dark:text-gray-100">
+            How to use this {toolNameLower}
+          </h2>
+          <p>
+            Use this free {toolNameLower} directly in your browser. No signup, no
+            download, no data sent to any server. Your data stays on your device.
+          </p>
+        </section>
+      )}
+
+      {tool.useCases && tool.useCases.length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-100">
+            Common use cases
+          </h2>
+          <ul className="list-disc space-y-2 pl-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+            {tool.useCases.map((uc, i) => (
+              <li key={i}>{uc}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {tool.faqs && tool.faqs.length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">
+            Frequently asked questions
+          </h2>
+          <div className="space-y-4">
+            {tool.faqs.map((faq, i) => (
+              <div key={i}>
+                <h3 className="mb-1 font-semibold text-gray-900 dark:text-gray-100">
+                  {faq.q}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <AdUnit className="mb-8" />
 

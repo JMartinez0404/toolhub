@@ -2,10 +2,12 @@ import type { MetadataRoute } from "next";
 import { tools } from "@/lib/tools-registry";
 import { SITE_URL } from "@/lib/constants";
 
+const buildDate = new Date();
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolPages = tools.map((tool) => ({
     url: `${SITE_URL}/tools/${tool.slug}`,
-    lastModified: new Date(),
+    lastModified: buildDate,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
@@ -13,19 +15,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
-      lastModified: new Date(),
+      lastModified: buildDate,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${SITE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
+      lastModified: buildDate,
+      changeFrequency: "yearly",
       priority: 0.5,
     },
     {
       url: `${SITE_URL}/privacy`,
-      lastModified: new Date(),
+      lastModified: buildDate,
       changeFrequency: "yearly",
       priority: 0.3,
     },

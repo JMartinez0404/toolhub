@@ -1,4 +1,8 @@
-export interface ToolMeta {
+import { toolsContent, type ToolContent } from "./tools-content";
+
+export type { ToolFaq, ToolContent } from "./tools-content";
+
+export interface ToolMeta extends ToolContent {
   slug: string;
   name: string;
   description: string;
@@ -8,7 +12,9 @@ export interface ToolMeta {
   category: "generators" | "converters" | "formatters" | "text";
 }
 
-export const tools: ToolMeta[] = [
+type BaseTool = Omit<ToolMeta, keyof ToolContent>;
+
+const baseTools: BaseTool[] = [
   {
     slug: "password-generator",
     name: "Password Generator",
@@ -110,3 +116,8 @@ export const tools: ToolMeta[] = [
     category: "text",
   },
 ];
+
+export const tools: ToolMeta[] = baseTools.map((t) => ({
+  ...t,
+  ...(toolsContent[t.slug] ?? {}),
+}));

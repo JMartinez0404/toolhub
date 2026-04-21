@@ -91,24 +91,30 @@ export default async function ToolPage({
             {
               "@context": "https://schema.org",
               "@type": "FAQPage",
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: `Is this ${tool.name.toLowerCase()} free?`,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: `Yes, this ${tool.name.toLowerCase()} is completely free to use with no limits. No signup or download required.`,
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: `Is my data safe with this ${tool.name.toLowerCase()}?`,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Absolutely. This tool runs entirely in your browser. No data is ever sent to a server or stored anywhere.",
-                  },
-                },
-              ],
+              mainEntity: (tool.faqs && tool.faqs.length > 0
+                ? tool.faqs.map((f) => ({
+                    "@type": "Question",
+                    name: f.q,
+                    acceptedAnswer: { "@type": "Answer", text: f.a },
+                  }))
+                : [
+                    {
+                      "@type": "Question",
+                      name: `Is this ${tool.name.toLowerCase()} free?`,
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: `Yes, this ${tool.name.toLowerCase()} is completely free to use with no limits. No signup or download required.`,
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: `Is my data safe with this ${tool.name.toLowerCase()}?`,
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Absolutely. This tool runs entirely in your browser. No data is ever sent to a server or stored anywhere.",
+                      },
+                    },
+                  ]),
             },
             {
               "@context": "https://schema.org",
