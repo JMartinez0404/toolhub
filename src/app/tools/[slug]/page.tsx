@@ -13,6 +13,21 @@ import { LoremIpsumGenerator } from "@/components/tools/LoremIpsumGenerator";
 import { QrCodeGenerator } from "@/components/tools/QrCodeGenerator";
 import { UrlCodec } from "@/components/tools/UrlCodec";
 import { MarkdownPreview } from "@/components/tools/MarkdownPreview";
+import { TextCaseConverter } from "@/components/tools/TextCaseConverter";
+import { UnixTimestamp } from "@/components/tools/UnixTimestamp";
+import { NumberBaseConverter } from "@/components/tools/NumberBaseConverter";
+import { HtmlEntityCodec } from "@/components/tools/HtmlEntityCodec";
+import { HashGenerator } from "@/components/tools/HashGenerator";
+import { DiffChecker } from "@/components/tools/DiffChecker";
+import { CsvToJson } from "@/components/tools/CsvToJson";
+import { JsonToCsv } from "@/components/tools/JsonToCsv";
+import { JwtDecoder } from "@/components/tools/JwtDecoder";
+import { RegexTester } from "@/components/tools/RegexTester";
+import { SlugGenerator } from "@/components/tools/SlugGenerator";
+import { LineTools } from "@/components/tools/LineTools";
+import { BinaryConverter } from "@/components/tools/BinaryConverter";
+import { HtmlMinifier } from "@/components/tools/HtmlMinifier";
+import { RomanNumeralConverter } from "@/components/tools/RomanNumeralConverter";
 
 const componentMap: Record<string, React.ComponentType> = {
   "password-generator": PasswordGenerator,
@@ -25,6 +40,21 @@ const componentMap: Record<string, React.ComponentType> = {
   "qr-code-generator": QrCodeGenerator,
   "url-codec": UrlCodec,
   "markdown-preview": MarkdownPreview,
+  "text-case-converter": TextCaseConverter,
+  "unix-timestamp": UnixTimestamp,
+  "number-base-converter": NumberBaseConverter,
+  "html-entity-codec": HtmlEntityCodec,
+  "hash-generator": HashGenerator,
+  "diff-checker": DiffChecker,
+  "csv-to-json": CsvToJson,
+  "json-to-csv": JsonToCsv,
+  "jwt-decoder": JwtDecoder,
+  "regex-tester": RegexTester,
+  "slug-generator": SlugGenerator,
+  "line-tools": LineTools,
+  "binary-converter": BinaryConverter,
+  "html-minifier": HtmlMinifier,
+  "roman-numeral-converter": RomanNumeralConverter,
 };
 
 export async function generateStaticParams() {

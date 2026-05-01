@@ -19,6 +19,12 @@ export function Header() {
             Tools
           </Link>
           <Link
+            href="/blog"
+            className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+          >
+            Blog
+          </Link>
+          <Link
             href="/about"
             className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
           >

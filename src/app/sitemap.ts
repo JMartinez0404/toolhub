@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { tools } from "@/lib/tools-registry";
+import { blogPosts } from "@/lib/blog-posts";
 import { SITE_URL } from "@/lib/constants";
 
 const buildDate = new Date();
@@ -31,6 +32,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    {
+      url: `${SITE_URL}/blog`,
+      lastModified: buildDate,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
     ...toolPages,
+    ...blogPosts.map((post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
   ];
 }
