@@ -30,6 +30,12 @@ export function Header() {
           >
             About
           </Link>
+          <Link
+            href="/contact"
+            className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+          >
+            Contact
+          </Link>
           <ThemeToggle />
         </nav>
       </div>
